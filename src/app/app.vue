@@ -21,4 +21,5 @@ export default {
 
 <style>
 @import './styles/app.css';
+@import './styles/normalize.css';
 </style>
