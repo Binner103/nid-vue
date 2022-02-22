@@ -1,6 +1,6 @@
 <template>
   <div class="app-sidebar-item brand">
-    <router-link to="/">
+    <router-link to="/" class="link">
       <AppLogo />
     </router-link>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import AppLogo from '@/app/components/app-logo.vue'
+import AppLogo from '@/app/components/app-logo.vue';
 
 export default defineComponent({
   name: 'AppSidebarItemBrand',
@@ -34,7 +34,7 @@ export default defineComponent({
    * 已创建
    */
   created() {
-  // 
+    //
   },
 
   /**
