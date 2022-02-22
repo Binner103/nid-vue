@@ -13,7 +13,7 @@ export default {
       layout: 'AppLayout',
     };
   },
-  
+
   components: {
     AppLayout,
   },
@@ -23,5 +23,6 @@ export default {
 <style>
 @import './styles/app.css';
 @import './styles/normalize.css';
+@import './styles/base.css';
 @import './styles/page.css';
 </style>
