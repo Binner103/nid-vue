@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -24,7 +25,6 @@ export default defineComponent({
 
     color: {
       type: String,
-      default: '#000000',
     },
   },
 
@@ -39,12 +39,24 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      theme: 'layout/theme',
+    }),
+
     appLogoClasses() {
       return ['app-logo', this.name];
     },
 
     appLogoStyles() {
-      return { fontSize: this.size + 'px', color: this.color };
+      let color;
+
+      if (this.color) {
+        color = this.color;
+      } else {
+        color = this.theme === 'dark' ? '#585858' : '#000000';
+      }
+
+      return { fontSize: this.size + 'px', color };
     },
   },
 
