@@ -1,3 +1,3 @@
 <template>
-  <div>欢迎访问宁皓网：）</div>
+  <div>欢迎访问HONGBIN.NET：）</div>
 </template>
