@@ -1,16 +1,15 @@
 <template>
-  <div class="page-header">
-    <div class="container">
-      PageHeader
-    </div>
+  <div class="app-sidebar-item popular">
+    <AppIcon name="local_fire_department" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
-  name: 'PageHeader',
+  name: 'AppSidebarItemPopular',
 
   /**
    * 属性
@@ -33,7 +32,7 @@ export default defineComponent({
    * 已创建
    */
   created() {
-  // 
+    //
   },
 
   /**
@@ -44,7 +43,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppIcon,
+  },
 });
 </script>
 

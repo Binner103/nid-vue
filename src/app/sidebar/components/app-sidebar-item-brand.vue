@@ -1,16 +1,17 @@
 <template>
-  <div class="page-header">
-    <div class="container">
-      PageHeader
-    </div>
+  <div class="app-sidebar-item brand">
+    <router-link to="/">
+      <AppLogo />
+    </router-link>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppLogo from '@/app/components/app-logo.vue'
 
 export default defineComponent({
-  name: 'PageHeader',
+  name: 'AppSidebarItemBrand',
 
   /**
    * 属性
@@ -44,7 +45,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppLogo,
+  },
 });
 </script>
 
