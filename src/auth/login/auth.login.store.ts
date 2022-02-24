@@ -57,16 +57,16 @@ export const authLoginStoreModule: Module<AuthLoginStoreState, RootState> = {
    * 动作
    */
   actions: {
-    async login({ commit }) {
+    async login({ commit }, data) {
       commit('setLoading', true);
 
       try {
-        const response = await apiHttpClient.post('/login');
+        const response = await apiHttpClient.post('/login', data);
         commit('setLoginResponseData', response.data);
         commit('setLoading', false);
 
         return response;
-      } catch (error:any) {
+      } catch (error) {
         commit('setLoading', false);
 
         throw error.response;

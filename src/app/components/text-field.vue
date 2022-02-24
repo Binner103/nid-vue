@@ -35,7 +35,7 @@ export default defineComponent({
   /**
    * 事件
    */
-  emits: ['update: modelValue'],
+  emits: ['update:modelValue'],
 
   /**
    * 数据
