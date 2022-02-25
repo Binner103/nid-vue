@@ -80,6 +80,8 @@ export default defineComponent({
           content: error.data.message,
         });
       }
+
+      this.$router.back();
     },
   },
 
