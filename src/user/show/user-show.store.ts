@@ -35,7 +35,7 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
       return state.loading;
     },
 
-    responseData(state) {
+    user(state) {
       return state.user;
     },
   },
@@ -48,7 +48,7 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
       state.loading = data;
     },
 
-    setResponseData(state, data) {
+    setUser(state, data) {
       state.user = data;
     },
   },
@@ -61,8 +61,8 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
       commit('setLoading', true);
 
       try {
-        const response = await apiHttpClient.get(`/user/${userId}`);
-        commit('setResponseData', response.data);
+        const response = await apiHttpClient.get(`/users/${userId}`);
+        commit('setUser', response.data);
         commit('setLoading', false);
 
         return response;

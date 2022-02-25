@@ -17,12 +17,19 @@ export default {
   },
 
   created() {
-    // 获取用户令牌
+    // 用户令牌
     const token = getStorage('nid');
 
     if (token) {
       this.setToken(token);
       this.configApiHttpClientAuthHeader(token);
+    }
+
+    // 当前用户
+
+    const userId = getStorage('uid');
+    if (userId) {
+      this.getCurrentUser(userId);
     }
   },
 
@@ -32,6 +39,7 @@ export default {
     }),
     ...mapActions({
       configApiHttpClientAuthHeader: 'auth/configApiHttpClientAuthHeader',
+      getCurrentUser: 'user/getCurrentUser',
     }),
   },
 

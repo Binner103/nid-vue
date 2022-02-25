@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
-import { authStoreModule } from '../auth/auth.store';
-import { AuthLoginStoreState } from '../auth/login/auth.login.store';
+import { authStoreModule, AuthStoreState } from '../auth/auth.store';
 import { postStoreModule, PostStoreState } from '../post/post.store';
 import { userStoreModule, UserStoreState } from '../user/user.store';
 import { localStorageStorePlugin } from './app.store.plugin';
@@ -14,7 +13,7 @@ export interface RootState {
   appName: string;
   post: PostStoreState;
   layout: LayOutStoreState;
-  auth: AuthLoginStoreState;
+  auth: AuthStoreState;
   notification: AppNotificationStoreState;
   user: UserStoreState;
 }
