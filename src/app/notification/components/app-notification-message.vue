@@ -1,7 +1,7 @@
 <template>
   <div class="app-notification-message">
     <div class="icon">
-      <AppIcon :name="messageIcon"/>
+      <AppIcon :name="messageIcon" />
     </div>
     <div class="content">{{ message.content }}</div>
   </div>
@@ -34,9 +34,9 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
-    messageIcon(){
-      return this.message.icon ? this.message.icon : 'info'
-    }
+    messageIcon() {
+      return this.message.icon ? this.message.icon : 'info';
+    },
   },
 
   /**
@@ -60,4 +60,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/app-notification-message.css';
+</style>
