@@ -1,7 +1,7 @@
 <template>
   <div class="user-show" v-if="user">
     <div class="user-show-header">
-      <UserAvatar :user="user" size="large"/>
+      <UserAvatar :user="user" size="large" />
     </div>
   </div>
 </template>
@@ -65,4 +65,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/user-show.css';
+</style>
