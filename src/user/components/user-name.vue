@@ -43,7 +43,7 @@ export default defineComponent({
 
     userNameLinkTo() {
       return {
-        name: 'userShow',
+        name: 'userPosts',
         params: { userId: this.user.id },
       };
     },
@@ -69,5 +69,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import './styles/user-name.css'
+@import './styles/user-name.css';
 </style>
