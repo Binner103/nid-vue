@@ -2,7 +2,10 @@
   <div class="user-show" v-if="user">
     <div class="user-show-header">
       <UserAvatar :user="user" size="large" />
-      <UserName :user="user" size="large"/>
+      <UserName :user="user" size="large" />
+    </div>
+    <div class="user-show-body">
+      <router-view></router-view>
     </div>
   </div>
 </template>
