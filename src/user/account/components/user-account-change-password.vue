@@ -1,10 +1,10 @@
 <template>
   <div class="user-account-change-name">
     <div class="form">
-      <h2 class="header">修改名字</h2>
-      <TextField v-model="newName" placeholder="输入新的用户名" />
+      <h2 class="header">修改密码</h2>
+      <TextField v-model="newPassword" placeholder="输入新的密码" type="password" />
       <TextField
-        v-if="newName"
+        v-if="newPassword"
         v-model="password"
         placeholder="验证用户登录密码"
         type="password"
@@ -21,7 +21,7 @@ import TextField from '@/app/components/text-field.vue';
 import ButtonField from '@/app/components/button-field.vue';
 
 export default defineComponent({
-  name: 'UserAccountChangeName',
+  name: 'UserAccountChangePassword',
 
   /**
    * 属性
@@ -33,7 +33,7 @@ export default defineComponent({
    */
   data() {
     return {
-      newName: '',
+      newPassword: '',
       password: '',
     };
   },
@@ -64,8 +64,8 @@ export default defineComponent({
     }),
 
     async onClickSubmitButton() {
-      if (!this.newName) {
-        return this.pushMessage({ content: '请输入新的用户名' });
+      if (!this.newPassword) {
+        return this.pushMessage({ content: '请输入新的密码' });
       }
 
       try {
@@ -73,7 +73,7 @@ export default defineComponent({
           userId: this.currentUser.id,
           body: {
             update: {
-              name: this.newName,
+              password: this.newPassword,
             },
             validate: {
               password: this.password,
@@ -81,9 +81,9 @@ export default defineComponent({
           },
         });
 
-        this.pushMessage({ content: '成功修改了用户名!' });
+        this.pushMessage({ content: '成功修改了密码!' });
 
-        this.newName = '';
+        this.newPassword = '';
         this.password = '';
       } catch (error) {
         this.pushMessage({ content: error.data.message });
@@ -101,8 +101,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.user-account-change-name{
-  padding-bottom: 32px;
-}
-</style>
+<style scoped></style>
