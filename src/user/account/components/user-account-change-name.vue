@@ -102,7 +102,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user-account-change-name{
+.user-account-change-name {
   padding-bottom: 32px;
 }
 </style>
