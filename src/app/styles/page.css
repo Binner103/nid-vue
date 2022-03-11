@@ -19,6 +19,7 @@
   z-index: 9999;
 
   background: var(--page-header-background);
+  transition: box-shadow 1s;
 }
 
 .page-header > .container {
@@ -27,6 +28,10 @@
   width: 100%;
   align-items: center;
   justify-content: flex-end;
+}
+
+.page-header.shadow {
+  box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.1);
 }
 
 .page-aside {
