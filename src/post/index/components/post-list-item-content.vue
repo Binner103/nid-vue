@@ -9,9 +9,9 @@
           {{ item.title }}
         </router-link>
       </div>
-    </div>
-    <div class="meta">
-      <UserName :user="item.user" />
+      <div class="meta">
+        <UserName :user="item.user" />
+      </div>
     </div>
     <div class="actions">
       <div class="action">
