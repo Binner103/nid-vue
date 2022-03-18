@@ -31,7 +31,7 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
    * 修改器
    */
   mutations: {
-    steShowPostListLayoutSwitcher(state, data) {
+    setShowPostListLayoutSwitcher(state, data) {
       state.showPostListLayoutSwitcher = data;
     },
   },

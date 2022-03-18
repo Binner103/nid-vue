@@ -28,7 +28,7 @@ export interface RootState {
  */
 const store = createStore({
   state: {
-    appName: '宁皓网',
+    appName: 'ShePicture',
   } as RootState,
 
   modules: {
