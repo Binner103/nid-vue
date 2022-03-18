@@ -1,7 +1,7 @@
 <template>
   <div :class="postListItemClasses">
     <PostListItemMedia :item="item" />
-    <PostListItemContent :item="item" />
+    <PostListItemContent :item="item" v-if="showPostListItemContent" />
   </div>
 </template>
 
@@ -20,8 +20,13 @@ export default defineComponent({
     ...mapGetters({
       layout: 'post/index/layout',
     }),
+
     postListItemClasses() {
       return ['post-list-item', this.item.file.orientation, this.layout];
+    },
+
+    showPostListItemContent() {
+      return !this.layout.includes('-minimal');
     },
   },
 
