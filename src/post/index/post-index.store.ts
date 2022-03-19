@@ -38,6 +38,10 @@ export interface PostIndexStoreState {
   totalPages: number;
 }
 
+export interface GetPostsOptions {
+  sort?: string;
+}
+
 export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
   namespaced: true,
 
@@ -87,9 +91,9 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
       return state.layout;
     },
 
-    hasMore(state){
+    hasMore(state) {
       return state.totalPages - state.nextPage >= 0;
-    }
+    },
   },
 
   mutations: {
@@ -119,12 +123,12 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
   },
 
   actions: {
-    async getPosts({ commit, dispatch, state }) {
+    async getPosts({ commit, dispatch, state }, options: GetPostsOptions = {}) {
       commit('setLoading', true);
 
       try {
         const response = await apiHttpClient.get(
-          `/posts?page=${state.nextPage}`,
+          `/posts?page=${state.nextPage}&sort=${options.sort}`,
         );
 
         dispatch('getPostsPostProcess', response);
