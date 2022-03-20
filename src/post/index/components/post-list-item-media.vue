@@ -1,7 +1,7 @@
 <template>
   <div class="post-list-item-media">
     <router-link class="link" :to="itemLinkTo">
-      <img class="image" :src="item.file.size.medium" alt="item.title" />
+      <img class="image" :src="item.file.size.medium" :alt="item.title" />
     </router-link>
   </div>
 </template>
