@@ -1,5 +1,6 @@
 <template>
   <div v-if="showPost">
+    <PostShowMedia :post="post" />
     <h1>{{ post.title }}</h1>
     <div>
       {{ post.content }} - <small>{{ post.user.name }}</small>
@@ -10,6 +11,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { defineComponent } from 'vue';
+import PostShowMedia from './components/post-show-media.vue';
 
 export default defineComponent({
   title() {
@@ -41,6 +43,10 @@ export default defineComponent({
     ...mapActions({
       getPostById: 'post/show/getPostById',
     }),
+  },
+
+  components: {
+    PostShowMedia,
   },
 });
 </script>
