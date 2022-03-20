@@ -1,10 +1,7 @@
 <template>
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
-    <h1>{{ post.title }}</h1>
-    <div>
-      {{ post.content }} - <small>{{ post.user.name }}</small>
-    </div>
+    <PostShowHeader :post="post" />
   </div>
 </template>
 
@@ -13,6 +10,8 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 import { defineComponent } from 'vue';
 import PostShowMedia from './components/post-show-media.vue';
 import { getStorage } from '@/app/app.service';
+import PostShowHeader from './components/post-show-header.vue';
+
 
 export default defineComponent({
   title() {
@@ -67,6 +66,7 @@ export default defineComponent({
 
   components: {
     PostShowMedia,
+    PostShowHeader,
   },
 });
 </script>
