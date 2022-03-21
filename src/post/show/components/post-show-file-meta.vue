@@ -9,7 +9,7 @@
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import PostShowFileMetaKit from './post-show-file-meta-kit.vue';
-import PostShowFileMetaSpecs from './post-show-file-specs.vue';
+import PostShowFileMetaSpecs from './post-show-file-meta-specs.vue';
 
 export default defineComponent({
   name: 'PostShowFileMeta',
