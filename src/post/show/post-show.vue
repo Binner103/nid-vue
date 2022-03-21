@@ -1,10 +1,10 @@
 <template>
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
-    <dic class="section meta actions">
+    <div class="section meta actions">
       <PostShowFileMeta :post="post" />
       <PostShowActions :post="post" />
-    </dic>
+    </div>
     <PostShowHeader :post="post" />
     <PostShowContent :post="post" />
   </div>
