@@ -20,12 +20,17 @@ export interface FileMetadata {
     FocalLength: number;
     ExposureTime: number;
     ISO: number;
-  }
+  };
 }
 
 export interface FileShowStoreState {
   loading: boolean;
   fileMetadata: FileMetadata | null;
+}
+
+export interface MetaItem {
+  title: string;
+  value: string;
 }
 
 export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
@@ -52,6 +57,33 @@ export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
 
     fileMetadata(state) {
       return state.fileMetadata;
+    },
+
+    kit(state) {
+      let kit: Array<MetaItem> = [];
+
+      if (state.fileMetadata) {
+        const {
+          Make = '',
+          Model = '',
+          LensMake = '',
+          LensModel = '',
+        } = state.fileMetadata.metadata;
+
+        const camera = {
+          title: '相机',
+          value: `${Make} ${Model}`.trim(),
+        };
+
+        const lens = {
+          title: '镜头',
+          value: `${LensMake} ${LensModel}`.trim(),
+        };
+
+        kit = [camera, lens];
+      }
+
+      return kit.filter(item => item.value !== '');
     },
   },
 
