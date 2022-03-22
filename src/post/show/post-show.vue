@@ -7,6 +7,7 @@
     </div>
     <PostShowHeader :post="post" />
     <PostShowContent :post="post" />
+    <PostShowTags v-if="post.tags" :tags="post.tags" />
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import PostShowHeader from './components/post-show-header.vue';
 import PostShowContent from './components/post-show-content.vue';
 import PostShowActions from './components/post-show-actions.vue';
 import PostShowFileMeta from './components/post-show-file-meta.vue';
+import PostShowTags from './components/post-show-tags.vue';
 
 export default defineComponent({
   title() {
@@ -77,6 +79,7 @@ export default defineComponent({
     PostShowContent,
     PostShowActions,
     PostShowFileMeta,
+    PostShowTags,
   },
 });
 </script>
