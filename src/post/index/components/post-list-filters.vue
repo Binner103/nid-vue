@@ -1,25 +1,27 @@
 <template>
-  <div class="user-posts">
-    <PostList :sort="sort" :filter="filter" />
+  <div class="post-list-filters">
+    <div
+      class="post-list-filter"
+      v-for="(filter, index) in filters"
+      :key="index"
+    >
+      <div class="title">{{ filter.title }}</div>
+      <div class="value">{{ filter.value }}</div>
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import PostList from '@/post/index/components/post-list.vue';
 
 export default defineComponent({
-  name: 'UserPosts',
+  name: 'PostListFilters',
 
   /**
    * 属性
    */
   props: {
-    sort: {
-      type: String,
-    },
-
-    filter: {
+    filters: {
       type: Object,
     },
   },
@@ -51,10 +53,10 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {
-    PostList,
-  },
+  components: {},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/post-list-filters.css';
+</style>
