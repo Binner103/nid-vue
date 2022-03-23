@@ -11,6 +11,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
@@ -44,13 +45,17 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    onClickBackButton(){
-      console.log('back')
+    ...mapActions({
+      goGetPrevPost: 'post/show/goGetPrevPost',
+      goGetNextPost: 'post/show/goGetNextPost',
+    }),
+    onClickBackButton() {
+      this.goGetPrevPost();
     },
 
-    onClickForwardButton(){
-      console.log('forward')
-    }
+    onClickForwardButton() {
+      this.goGetNextPost();
+    },
   },
 
   /**
@@ -63,5 +68,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import './styles/post-show-navigator.css'
+@import './styles/post-show-navigator.css';
 </style>
