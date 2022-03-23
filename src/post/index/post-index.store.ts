@@ -96,7 +96,7 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
           }
 
           if (item.title && state.filter) {
-            item.value = state.filter[filterName]
+            item.value = state.filter[filterName];
             items.push(item);
           }
         });
@@ -143,7 +143,13 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
   actions: {
     async getPosts({ commit, dispatch, state }, options: GetPostsOptions = {}) {
-      const getPostsQueryString = await dispatch('getPostsPreProcess', options);
+      let getPostsQueryString = '';
+
+      if (Object.keys(options).length) {
+        getPostsQueryString = await dispatch('getPostsPreProcess', options);
+      } else {
+        getPostsQueryString = state.queryString;
+      }
 
       try {
         const response = await apiHttpClient.get(
