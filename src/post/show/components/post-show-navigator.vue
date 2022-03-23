@@ -51,7 +51,18 @@ export default defineComponent({
    * 已创建
    */
   created() {
-    //
+    if (window) {
+      window.addEventListener('keyup', this.onKeyUpWindow);
+    }
+  },
+
+  /**
+   * 取消挂载
+   */
+  unmounted() {
+    if (window) {
+      window.removeEventListener('keyup', this.onKeyUpWindow);
+    }
   },
 
   /**
@@ -61,13 +72,34 @@ export default defineComponent({
     ...mapActions({
       goGetPrevPost: 'post/show/goGetPrevPost',
       goGetNextPost: 'post/show/goGetNextPost',
+      pushMessage: 'notification/pushMessage',
     }),
+
     onClickBackButton() {
       this.goGetPrevPost();
     },
 
     onClickForwardButton() {
       this.goGetNextPost();
+    },
+
+    onKeyUpWindow(event) {
+      switch (event.key) {
+        case 'ArrowLeft':
+          if (this.canNavigatorBack) {
+            this.goGetPrevPost();
+          } else {
+            this.pushMessage({ content: '没有内容了!' });
+          }
+          break;
+        case 'ArrowRight':
+          if (this.canNavigateForward) {
+            this.goGetNextPost();
+          } else {
+            this.pushMessage({ content: '没有内容了!' });
+          }
+          break;
+      }
     },
   },
 
