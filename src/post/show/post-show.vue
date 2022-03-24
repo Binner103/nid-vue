@@ -1,5 +1,5 @@
 <template>
-  <PostShowSkeleton :class="postShowClasses" v-if="!showPost"/>
+  <PostShowSkeleton :class="postShowClasses" v-if="!showPost" />
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
     <div class="section meta actions">
@@ -51,6 +51,7 @@ export default defineComponent({
       loading: 'post/show/loading',
       post: 'post/show/post',
       layout: 'post/show/layout',
+      sideSheetComponent: 'layout/sideSheetComponent',
     }),
 
     showPost() {
@@ -58,7 +59,7 @@ export default defineComponent({
     },
 
     postShowClasses() {
-      return ['post-show', this.layout];
+      return ['post-show', this.layout, { aside: this.sideSheetComponent }];
     },
   },
 
