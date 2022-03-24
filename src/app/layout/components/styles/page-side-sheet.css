@@ -11,10 +11,32 @@
   background: var(--page-side-sheet-background);
   border-top-left-radius: 10px;
   box-shadow: -30px 30px 30px rgba(0, 0, 0, 0.1);
+  opacity: 0.8;
 }
 
 .page-side-sheet > .close-button {
   position: absolute;
   top: 16px;
   left: 16px;
+}
+
+.page-side-sheet-enter-active {
+  transform: translateX(360px);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.page-side-sheet-enter-to {
+  transform: translateX(0);
+  opacity: 0.8;
+}
+
+.page-side-sheet-leave-active {
+  transform: translateX(0);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.page-side-sheet-leave-to {
+  transform: translateX(360px);
 }
