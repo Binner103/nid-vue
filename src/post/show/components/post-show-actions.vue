@@ -54,7 +54,13 @@ export default defineComponent({
    * 已创建
    */
   created() {
-    //
+    if (this.sideSheetComponent) {
+      this.setSideSheetProps({
+        filter: {
+          post: this.post.id,
+        },
+      });
+    }
   },
 
   /**
@@ -64,6 +70,7 @@ export default defineComponent({
     ...mapMutations({
       setSideSheetComponent: 'layout/setSideSheetComponent',
       resetSideSheet: 'layout/resetSideSheet',
+      setSideSheetProps: 'layout/setSideSheetProps',
     }),
 
     onClickCommentButton() {
@@ -71,6 +78,12 @@ export default defineComponent({
         this.resetSideSheet();
       } else {
         this.setSideSheetComponent('CommentSideSheet');
+
+        this.setSideSheetProps({
+          filter: {
+            post: this.post.id,
+          },
+        });
       }
     },
   },
