@@ -1,14 +1,13 @@
 <template>
   <div class="comment-list">
-    <div v-for="comment in comments" :key="comment.id">
-      {{ comment.content }}
-    </div>
+    <CommentListItem v-for="comment in comments" :key="comment.id" :item="comment" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
+import CommentListItem from './comments-list-item.vue';
 
 export default defineComponent({
   name: 'CommentList',
@@ -69,7 +68,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    CommentListItem,
+  },
 });
 </script>
 
