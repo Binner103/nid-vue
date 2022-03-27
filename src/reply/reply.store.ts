@@ -1,8 +1,12 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
+import {
+  ReplyIndexStoreState,
+  replyIndexStoreModule,
+} from './index/reply-index.store';
 
 export interface ReplyStoreState {
-  
+  index: ReplyIndexStoreState;
 }
 
 export const replyStoreModule: Module<ReplyStoreState, RootState> = {
@@ -14,28 +18,24 @@ export const replyStoreModule: Module<ReplyStoreState, RootState> = {
   /**
    * 数据
    */
-  state: {
-  
-  } as ReplyStoreState,
+  state: {} as ReplyStoreState,
 
   /**
    * 获取器
    */
-  getters: {
-   
-  },
+  getters: {},
 
   /**
    * 修改器
    */
-  mutations: {
-
-  },
+  mutations: {},
 
   /**
    * 动作
    */
-  actions: {
+  actions: {},
 
+  modules: {
+    index: replyIndexStoreModule,
   },
 };

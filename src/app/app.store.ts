@@ -17,7 +17,7 @@ import {
   commentStoreModule,
   CommentStoreState,
 } from '../comment/comment.store';
-import { replyStoreModule, ReplyStoreState } from '../reply.store';
+import { replyStoreModule, ReplyStoreState } from '../reply/reply.store';
 
 export interface RootState {
   appName: string;
