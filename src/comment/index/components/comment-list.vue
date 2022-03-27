@@ -1,5 +1,9 @@
 <template>
-  <div class="comment-list">CommentList</div>
+  <div class="comment-list">
+    <div v-for="comment in comments" :key="comment.id">
+      {{ comment.content }}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,7 +43,7 @@ export default defineComponent({
    * 已创建
    */
   async created() {
-    await this.getComments();
+    await this.getComments({ filter: this.filter });
     // console.log(this.comments);
     console.log(this.filter);
   },
@@ -49,7 +53,7 @@ export default defineComponent({
    */
   watch: {
     filter() {
-      console.log(this.filter);
+      this.getComments({ filter: this.filter });
     },
   },
 
