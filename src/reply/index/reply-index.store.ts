@@ -68,7 +68,7 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
 
       try {
         const response = await apiHttpClient.get(
-          'comments/${commentId}/replies',
+          `comments/${commentId}/replies`,
         );
         commit('setReplies', response.data);
         commit('setLoading', false);
