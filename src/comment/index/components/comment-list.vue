@@ -43,8 +43,6 @@ export default defineComponent({
    */
   async created() {
     await this.getComments({ filter: this.filter });
-    // console.log(this.comments);
-    console.log(this.filter);
   },
 
   /**
