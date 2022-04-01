@@ -37,7 +37,7 @@ export interface RootState {
  */
 const store = createStore({
   state: {
-    appName: 'ShePicture',
+    appName: 'ImgPoet',
   } as RootState,
 
   modules: {

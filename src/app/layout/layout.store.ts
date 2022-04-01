@@ -2,6 +2,7 @@ import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 
 export interface LayOutStoreState {
+  sideSheetTouchdown: boolean;
   theme: string;
   sideSheetComponent: string;
   // eslint-disable-next-line
@@ -18,6 +19,7 @@ export const layoutStoreModule: Module<LayOutStoreState, RootState> = {
    * 数据
    */
   state: {
+    sideSheetTouchdown: false,
     theme: 'light',
     sideSheetComponent: '',
     sideSheetProps: null,
@@ -27,6 +29,10 @@ export const layoutStoreModule: Module<LayOutStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    sideSheetTouchdown(state) {
+      return state.sideSheetTouchdown;
+    },
+
     theme(state) {
       return state.theme;
     },
@@ -44,6 +50,10 @@ export const layoutStoreModule: Module<LayOutStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setSideSheetTouchdown(state, data) {
+      state.sideSheetTouchdown = data;
+    },
+
     setTheme(state, data) {
       state.theme = data;
     },
