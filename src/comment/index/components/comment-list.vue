@@ -1,6 +1,10 @@
 <template>
   <div class="comment-list">
-    <CommentListItem v-for="comment in comments" :key="comment.id" :item="comment" />
+    <CommentListItem
+      v-for="comment in comments"
+      :key="comment.id"
+      :item="comment"
+    />
   </div>
 </template>
 
@@ -35,6 +39,8 @@ export default defineComponent({
     ...mapGetters({
       loading: 'comment/index/loading',
       comments: 'comment/index/comments',
+      hasMore: 'comment/index/hasMore',
+      sideSheetTouchdown: 'layout/sideSheetTouchdown',
     }),
   },
 
@@ -52,6 +58,16 @@ export default defineComponent({
     filter() {
       this.getComments({ filter: this.filter });
     },
+
+    sideSheetTouchdown(newValue) {
+      if (newValue && this.hasMore && !this.loading) {
+        try {
+          this.getComments({ filter: this.filter });
+        } catch (error) {
+          this.pushMessage({ content: error.data.message });
+        }
+      }
+    },
   },
 
   /**
@@ -60,6 +76,7 @@ export default defineComponent({
   methods: {
     ...mapActions({
       getComments: 'comment/index/getComments',
+      pushMessage: 'notification/pushMessage',
     }),
   },
 

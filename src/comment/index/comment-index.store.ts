@@ -28,7 +28,7 @@ export interface CommentIndexStoreState {
   filter: { [name: string]: string } | null;
   queryString: string;
   nextPage: number;
-  totalPage: number;
+  totalPages: number;
 }
 
 export interface GetCommentOptions {
@@ -53,7 +53,7 @@ export const commentIndexStoreModule: Module<
     filter: null,
     queryString: '',
     nextPage: 1,
-    totalPage: 1,
+    totalPages: 1,
   } as CommentIndexStoreState,
 
   /**
@@ -66,6 +66,10 @@ export const commentIndexStoreModule: Module<
 
     comments(state) {
       return state.comments;
+    },
+
+    hasMore(state) {
+      return state.totalPages - state.nextPage >= 0;
     },
   },
 
@@ -98,8 +102,8 @@ export const commentIndexStoreModule: Module<
       }
     },
 
-    setTotalPage(state, data) {
-      state.totalPage = data;
+    setTotalPages(state, data) {
+      state.totalPages = data;
     },
   },
 
@@ -163,7 +167,7 @@ export const commentIndexStoreModule: Module<
       commit('setLoading', false);
 
       const total =
-        response.header['X-Total-Count'] || response.header['x-total-count'];
+        response.headers['X-Total-Count'] || response.headers['x-total-count'];
 
       const totalPages = Math.ceil(total / COMMENTS_PER_PAGE);
 

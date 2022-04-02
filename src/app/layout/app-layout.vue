@@ -40,6 +40,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       theme: 'layout/theme',
+      sideSheetTouchdown: 'layout/sideSheetTouchdown',
     }),
   },
 
@@ -60,7 +61,7 @@ export default defineComponent({
   methods: {
     ...mapMutations({
       setTheme: 'layout/setTheme',
-      sideSheetTouchdown: 'layout/sideSheetTouchdown',
+      setSideSheetTouchdown: 'layout/setSideSheetTouchdown',
     }),
 
     onScrollPageSideSheet() {
@@ -68,9 +69,10 @@ export default defineComponent({
         scrollTop,
         scrollHeight,
         clientHeight,
-      } = this.$refs.PageSideSheet.$el;
-      if (clientHeight + scrollTop === scrollHeight) {
-        this.sideSheetTouchdown(true);
+      } = this.$refs.pageSideSheet.$el;
+
+      if (clientHeight + scrollTop == scrollHeight) {
+        this.setSideSheetTouchdown(true);
       }
     },
   },
