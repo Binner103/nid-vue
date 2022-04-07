@@ -93,6 +93,8 @@ export default defineComponent({
     }),
 
     async submitComment() {
+      if (this.content.trim()) return;
+
       if (!this.currentUser) {
         this.pushMessage({ content: '请求登录' });
         return;
