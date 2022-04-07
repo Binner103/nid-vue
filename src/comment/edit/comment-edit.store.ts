@@ -11,7 +11,10 @@ export interface UpdateCommentOptions {
   content?: string;
 }
 
-export const storeModule: Module<CommentEditStoreState, RootState> = {
+export const commentEditStoreModule: Module<
+  CommentEditStoreState,
+  RootState
+> = {
   /**
    * 命名空间
    */
