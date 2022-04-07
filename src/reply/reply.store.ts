@@ -4,9 +4,14 @@ import {
   ReplyIndexStoreState,
   replyIndexStoreModule,
 } from './index/reply-index.store';
+import {
+  ReplyCreateStoreState,
+  replyCreateStoreModule,
+} from './create/reply-create.store';
 
 export interface ReplyStoreState {
   index: ReplyIndexStoreState;
+  create: ReplyCreateStoreState;
 }
 
 export const replyStoreModule: Module<ReplyStoreState, RootState> = {
@@ -37,5 +42,6 @@ export const replyStoreModule: Module<ReplyStoreState, RootState> = {
 
   modules: {
     index: replyIndexStoreModule,
+    create: replyCreateStoreModule,
   },
 };
