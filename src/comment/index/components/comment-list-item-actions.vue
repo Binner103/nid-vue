@@ -11,6 +11,11 @@
         {{ deleteButtonText }}
       </button>
     </div>
+    <div class="action" v-if="showOwnCommentOperation">
+      <button class="button basic" @click="onClickUpdateButton">
+        {{ updateButtonText }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -32,6 +37,9 @@ export default defineComponent({
     showOperation: {
       type: Boolean,
     },
+    isEditing: {
+      type: Boolean,
+    },
   },
 
   /**
@@ -47,7 +55,7 @@ export default defineComponent({
   /**
    * 事件
    */
-  emits: ['toggle-replies'],
+  emits: ['toggle-replies', 'editing'],
 
   /**
    * 计算属性
@@ -71,6 +79,10 @@ export default defineComponent({
 
     deleteButtonText() {
       return this.confirmDelete ? '确定删除' : '删除';
+    },
+
+    updateButtonText() {
+      return this.isEditing ? '确定编辑' : '编辑';
     },
   },
 
@@ -110,6 +122,10 @@ export default defineComponent({
       }
 
       this.confirmDelete = !this.confirmDelete;
+    },
+
+    onClickUpdateButton() {
+      this.$emit('editing');
     },
   },
 
