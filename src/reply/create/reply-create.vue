@@ -69,6 +69,10 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapMutations({
+      increaseTotalReplies: 'comment/index/increaseTotalReplies',
+    }),
+
     ...mapActions({
       createReply: 'reply/create/createReply',
       pushMessage: 'notification/pushMessage',
@@ -87,6 +91,8 @@ export default defineComponent({
         this.content = '';
 
         this.$emit('replied', this.comment.id);
+
+        this.increaseTotalReplies(this.comment.id);
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
