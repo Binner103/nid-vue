@@ -33,6 +33,9 @@ export default defineComponent({
     comment: {
       type: Object,
     },
+    showReplies: {
+      type: Boolean,
+    },
   },
 
   /**
@@ -76,6 +79,7 @@ export default defineComponent({
     ...mapActions({
       createReply: 'reply/create/createReply',
       pushMessage: 'notification/pushMessage',
+      getReplies: 'reply/index/getReplies',
     }),
 
     async submitReply() {
@@ -93,6 +97,10 @@ export default defineComponent({
         this.$emit('replied', this.comment.id);
 
         this.increaseTotalReplies(this.comment.id);
+
+        if (this.showReplies) {
+          this.getReplies(this.comment.id);
+        }
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
@@ -103,7 +111,6 @@ export default defineComponent({
     },
     onClickReplyButton() {
       this.submitReply();
-      console.log('1111');
     },
 
     onKeyDownReplyTextarea(event) {
