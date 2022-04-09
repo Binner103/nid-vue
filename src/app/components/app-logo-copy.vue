@@ -1,17 +1,15 @@
 <template>
-  <div class="app-sidebar-item brand">
-    <router-link to="/" class="link">
-      <AppLogoCopy />
-    </router-link>
+  <div class="app-logo-copy">
+    <img src="https://img.icons8.com/nolan/64/compact-camera.png" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppLogoCopy from '@/app/components/app-logo-copy.vue';
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
-  name: 'AppSidebarItemBrand',
+  name: 'AppLogoCopy',
 
   /**
    * 属性
@@ -45,10 +43,10 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {
-    AppLogoCopy,
-  },
+  components: {},
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/app-logo-copy.css';
+</style>
