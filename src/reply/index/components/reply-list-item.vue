@@ -27,7 +27,7 @@ import UserAvatar from '@/user/components/user-avatar.vue';
 import ReplyListItemMeta from './reply-list-item-meta.vue';
 import ReplyListItemContent from './reply-list-item-content.vue';
 import ReplyListItemActions from './reply-list-item-actions.vue';
-import CommentEdit from '@/comment/edit/comment-edit';
+import CommentEdit from '@/comment/edit/comment-edit.vue';
 
 export default defineComponent({
   name: 'ReplyListItem',
