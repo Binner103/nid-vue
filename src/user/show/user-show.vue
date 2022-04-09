@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import UserAvatar from '@/user/components/user-avatar.vue';
 import UserName from '@/user/components/user-name.vue';
 import UserShowMenu from './components/user-show-menu.vue';
@@ -61,6 +61,19 @@ export default defineComponent({
   created() {
     // 获取用户信息
     this.getUserById(this.userId);
+
+    if (window) {
+      window.addEventListener('scroll', this.onScrollWindow);
+    }
+  },
+
+  /**
+   * 取消挂载
+   */
+  unmounted() {
+    if (window) {
+      window.removeEventListener('scroll', this.onScrollWindow);
+    }
   },
 
   /**
@@ -70,6 +83,24 @@ export default defineComponent({
     ...mapActions({
       getUserById: 'user/show/getUserById',
     }),
+
+    ...mapMutations({
+      setTouchdown: 'user/show/setTouchdown',
+    }),
+
+    onScrollWindow() {
+      if (document) {
+        const {
+          scrollTop,
+          scrollHeight,
+          clientHeight,
+        } = document.documentElement;
+
+        if (clientHeight + scrollTop === scrollHeight) {
+          this.setTouchdown(true);
+        }
+      }
+    },
   },
 
   /**
