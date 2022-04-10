@@ -15,6 +15,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters, mapActions } from 'vuex';
 import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
 
@@ -40,6 +41,8 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({}),
+
     submitButtonText() {
       return '发布';
     },
@@ -56,8 +59,28 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapActions({
+      createPost: 'post/create/createPost',
+      pushMessage: 'notification/pushMessage',
+    }),
+
     onClickSubmitButton() {
-      console.log(this.title, this.content);
+      if (!this.title.trim()) return;
+
+      this.submitCreatePost();
+    },
+
+    async submitCreatePost() {
+      try {
+        await this.createPost({
+          data: {
+            title: this.title,
+            content: this.content,
+          },
+        });
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
     },
   },
 
