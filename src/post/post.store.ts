@@ -5,6 +5,10 @@ import {
   PostCreateStoreState,
 } from './create/post-create.store';
 import {
+  postEditStoreModule,
+  PostEditStoreState,
+} from './edit/post-edit.store';
+import {
   postIndexStoreModule,
   PostIndexStoreState,
 } from './index/post-index.store';
@@ -13,6 +17,7 @@ import { postShowStoreModule } from './show/post-show.store';
 export interface PostStoreState {
   create: PostCreateStoreState;
   index: PostIndexStoreState;
+  edit: PostEditStoreState;
 }
 
 export const postStoreModule: Module<PostStoreState, RootState> = {
@@ -22,5 +27,6 @@ export const postStoreModule: Module<PostStoreState, RootState> = {
     create: postCreateStoreModule,
     index: postIndexStoreModule,
     show: postShowStoreModule,
+    edit: postEditStoreModule,
   },
 };
