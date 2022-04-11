@@ -24,6 +24,7 @@ export interface CreatePostTagOptions {
 
 export interface PostEditStoreState {
   loading: boolean;
+  tags: Array<TagItem>;
 }
 
 export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
@@ -36,6 +37,7 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
    * 数据
    */
   state: {
+    tags: [],
     loading: false,
   } as PostEditStoreState,
 
@@ -43,6 +45,10 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    tags(state) {
+      return state.tags;
+    },
+
     loading(state) {
       return state.loading;
     },
@@ -52,6 +58,10 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setTags(state, data) {
+      state.tags = data;
+    },
+
     setLoading(state, data) {
       state.loading = data;
     },
@@ -78,14 +88,23 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
       }
     },
 
-    async createPostTag({ commit }, options: CreatePostTagOptions = {}) {
+    async createPostTag(
+      { commit, dispatch },
+      options: CreatePostTagOptions = {},
+    ) {
       commit('setLoading', true);
 
       const { postId, data } = options;
 
       try {
         const response = await apiHttpClient.post(`posts/${postId}/tag`, data);
+
+        const {
+          data: { tags },
+        } = await dispatch('post/show/getPostById', postId, { root: true });
+
         commit('setLoading', false);
+        commit('setTags', tags);
 
         return response;
       } catch (error) {
