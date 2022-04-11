@@ -7,6 +7,7 @@
       :rows="1"
       v-model="content"
     />
+    <PostTagField :postId="postId" />
     <button class="button large" @click="onClickSubmitButton">
       {{ submitButtonText }}
     </button>
@@ -18,6 +19,7 @@ import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
+import PostTagField from '@/post/components/post-tag-field.vue';
 
 export default defineComponent({
   name: 'PostCreate',
@@ -156,6 +158,7 @@ export default defineComponent({
   components: {
     TextField,
     TextareaField,
+    PostTagField,
   },
 });
 </script>
