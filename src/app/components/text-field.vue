@@ -5,8 +5,7 @@
       class="input text"
       :value="modelValue"
       :placeholder="placeholder"
-      @input="$emit('update:modelValue', $event.target.value.trim())"
-      @change="onChangText"
+      @input="onInputText"
     />
   </div>
 </template>
@@ -63,7 +62,7 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    onChangText(event) {
+    onInputText(event) {
       const value = event.target.value.trim();
 
       if (this.value !== value) {
@@ -71,6 +70,8 @@ export default defineComponent({
       }
 
       this.value = value;
+
+      this.$emit('update:modelValue', event.target.value.trim());
     },
   },
 
