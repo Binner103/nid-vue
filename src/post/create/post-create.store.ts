@@ -3,6 +3,7 @@ import { apiHttpClient } from '@/app/app.service';
 import { RootState } from '../../app/app.store';
 
 export interface PostCreateStoreState {
+  unsaved: boolean;
   postId: number | null;
   title: string;
   content: string;
@@ -22,6 +23,7 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
   namespaced: true,
 
   state: {
+    unsaved: false,
     postId: null,
     title: '',
     content: '',
@@ -29,6 +31,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
   } as PostCreateStoreState,
 
   getters: {
+    unsaved(state) {
+      return state.unsaved;
+    },
+
     postId(state) {
       return state.postId;
     },
@@ -47,6 +53,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
   },
 
   mutations: {
+    setUnsaved(state, data) {
+      state.unsaved = data;
+    },
+
     setPostId(state, data) {
       state.postId = data;
     },
