@@ -3,7 +3,12 @@
     <PostTitleField />
     <PostContentField />
     <PostTagField :postId="postId" v-if="postId" />
-    <PostActions @update="submitUpdatePost" @create="submitCreatePost" />
+    <PostActions
+      @update="submitUpdatePost"
+      @create="submitCreatePost"
+      size="large"
+      :userDeleteButton="postId ? true : false"
+    />
   </div>
 </template>
 

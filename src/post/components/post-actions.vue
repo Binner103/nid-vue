@@ -1,5 +1,12 @@
 <template>
   <div class="post-actions">
+    <button
+      :class="deleteButtonClasses"
+      @click="onClickDeleteButton"
+      v-if="userDeleteButton"
+    >
+      {{ deleteButtonText }}
+    </button>
     <button :class="submitButtonClasses" @click="onClickSubmitButton">
       {{ submitButtonText }}
     </button>
@@ -20,19 +27,25 @@ export default defineComponent({
     size: {
       type: String,
     },
-  },
 
-  /**
-   * 事件
-   */
-  emits: ['update', 'create'],
+    userDeleteButton: {
+      type: Boolean,
+    },
+  },
 
   /**
    * 数据
    */
   data() {
-    return {};
+    return {
+      confirmDelete: false,
+    };
   },
+
+  /**
+   * 事件
+   */
+  emits: ['update', 'create', 'delete'],
 
   /**
    * 计算属性
@@ -50,6 +63,14 @@ export default defineComponent({
 
     submitButtonClasses() {
       return ['button', this.size, { outline: this.unsaved }];
+    },
+
+    deleteButtonText() {
+      return this.confirmDelete ? '确定删除' : '删除';
+    },
+
+    deleteButtonClasses() {
+      return ['button', this.size, 'red', { outline: !this.confirmDelete }];
     },
   },
 
@@ -72,6 +93,10 @@ export default defineComponent({
       } else {
         this.$emit('create');
       }
+    },
+
+    onClickDeleteButton() {
+      this.confirmDelete = !this.confirmDelete;
     },
   },
 
