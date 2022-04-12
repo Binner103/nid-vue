@@ -1,6 +1,6 @@
 <template>
   <div class="post-create">
-    <TextField placeholder="标题" v-model="title" />
+    <PostTitleField />
     <TextareaField
       placeholder="描述"
       class="bordered"
@@ -17,9 +17,9 @@
 <script>
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
-import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
 import PostTagField from '@/post/components/post-tag-field.vue';
+import PostTitleField from '@/post/components/post-title-field.vue';
 
 export default defineComponent({
   name: 'PostCreate',
@@ -163,9 +163,9 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    TextField,
     TextareaField,
     PostTagField,
+    PostTitleField,
   },
 });
 </script>
