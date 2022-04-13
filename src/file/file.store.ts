@@ -1,8 +1,10 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import { fileShowStoreModule, FileShowStoreState } from './show/file-show.store';
+import { FileCreateStoreState, fileCreateStoreModule } from '@/file/create/file-create.store';
 
 export interface FileStoreState {
+  create: FileCreateStoreState;
   show: FileShowStoreState;
 }
 
@@ -33,6 +35,7 @@ export const fileStoreModule: Module<FileStoreState, RootState> = {
   actions: {},
 
   modules: {
+    create: fileCreateStoreModule,
     show: fileShowStoreModule
   },
 };
