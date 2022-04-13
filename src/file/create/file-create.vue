@@ -1,13 +1,13 @@
 <template>
-  <div class="file-create">
+  <div :class="fileCreateClasses">
+    <FileCreateMedia v-if="previewImage" />
     <FileCreateDragZone @change="onChangeDragZone" />
-    <FileCreateMedia />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapMutations, mapActions } from 'vuex';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FileCreateDragZone from './components/file-create-drag-zone.vue';
 import FileCreateMedia from './components/file-create-media.vue';
 
@@ -34,7 +34,15 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      previewImage: 'file/create/previewImage',
+    }),
+
+    fileCreateClasses() {
+      return ['file-create', { active: this.previewImage }];
+    },
+  },
 
   /**
    * 已创建
@@ -47,11 +55,31 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      setSelectedFile: 'file/create/setSelectedFile',
+      setPreviewImage: 'file/create/setPreviewImage',
+    }),
     ...mapActions({}),
 
     onChangeDragZone(files) {
+      const file = files[0];
+
+      if (file) {
+        this.setSelectedFile(file);
+        this.createImagePreview(file);
+      }
+
       this.$emit('change', files);
+    },
+
+    createImagePreview(file) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = event => {
+        this.setPreviewImage(event.target.result);
+      };
     },
   },
 
