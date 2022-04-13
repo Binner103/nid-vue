@@ -1,16 +1,21 @@
 <template>
-  <div class="file-create">
-    <FileCreateDragZone @change="onChangeDragZone" />
+  <div class="file-create-drag-zone">
+    <FileField
+      name="file"
+      @change="onChangeFile"
+      fileType="image/*"
+      :text="fileFieldText"
+    />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapMutations, mapActions } from 'vuex';
-import FileCreateDragZone from './components/file-create-drag-zone.vue';
+import { mapGetters } from 'vuex';
+import FileField from '@/app/components/file-field.vue';
 
 export default defineComponent({
-  name: 'FileCreate',
+  name: 'FileCreateDragZone',
 
   /**
    * 属性
@@ -32,7 +37,13 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({}),
+
+    fileFieldText() {
+      return '选择文件';
+    },
+  },
 
   /**
    * 已创建
@@ -45,10 +56,7 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapMutations({}),
-    ...mapActions({}),
-
-    onChangeDragZone(files) {
+    onChangeFile(files) {
       this.$emit('change', files);
     },
   },
@@ -57,11 +65,11 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    FileCreateDragZone,
+    FileField,
   },
 });
 </script>
 
 <style scoped>
-@import './styles/file-create.css';
+@import './styles/file-create-drag-zone.css';
 </style>
