@@ -1,7 +1,8 @@
 <template>
   <div :class="fileCreateClasses">
     <FileCreateMedia v-if="previewImage" />
-    <FileCreateDragZone @change="onChangeDragZone" />
+    <FileCreateDragZone @change="onChangeDragZone" v-if="!uploading" />
+    <FileCreateStatus v-if="uploading" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@ import { defineComponent } from 'vue';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FileCreateDragZone from './components/file-create-drag-zone.vue';
 import FileCreateMedia from './components/file-create-media.vue';
+import FileCreateStatus from './components/file-create-status.vue';
 
 export default defineComponent({
   name: 'FileCreate',
@@ -37,6 +39,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       previewImage: 'file/create/previewImage',
+      uploading: 'file/create/uploading',
     }),
 
     fileCreateClasses() {
@@ -89,6 +92,7 @@ export default defineComponent({
   components: {
     FileCreateDragZone,
     FileCreateMedia,
+    FileCreateStatus,
   },
 });
 </script>
