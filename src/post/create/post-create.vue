@@ -11,7 +11,7 @@
       size="large"
       :userDeleteButton="postId ? true : false"
     />
-    <PostMeta v-if="postId && post" :post="post" />
+    <PostMeta v-if="postCache" :post="postCache" />
   </div>
 </template>
 
@@ -37,7 +37,9 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      postCache: null,
+    };
   },
 
   /**
@@ -64,6 +66,12 @@ export default defineComponent({
         this.getPost(parseInt(postId, 10));
       } else {
         this.reset();
+      }
+    },
+
+    post(newValue) {
+      if (newValue) {
+        this.postCache = newValue;
       }
     },
   },
@@ -150,6 +158,7 @@ export default defineComponent({
       this.setUnsaved(false);
       this.setSelectedFile(null);
       this.setPreviewImage(null);
+      this.postCache = null;
     },
 
     async submitUpdatePost() {
