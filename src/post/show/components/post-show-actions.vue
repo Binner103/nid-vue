@@ -1,13 +1,13 @@
 <template>
   <div class="post-show-actions">
-    <PostLikeAction class="action" :post="post"/>
+    <PostLikeAction class="action" :post="post" />
     <div class="action">
       <div class="icon">
         <button class="button basic" @click="onClickCommentButton">
           <AppIcon name="comment" />
         </button>
       </div>
-      <div class="text">{{ post.totalComments }}</div>
+      <div class="text" v-if="post.totalComments">{{ post.totalComments }}</div>
     </div>
   </div>
 </template>
