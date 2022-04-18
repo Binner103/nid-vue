@@ -29,6 +29,7 @@ export interface Post {
       name: string;
     },
   ];
+  liked: number;
 }
 
 export interface PostShowStoreState {
@@ -105,6 +106,29 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
 
     setLayout(state, data) {
       state.layout = data;
+    },
+
+    setPostLiked(state, data) {
+      const { postId, liked } = data;
+
+      if (state.post.id === postId) {
+        state.post.liked = liked;
+      }
+    },
+
+    setPostTotalLikes(state, data) {
+      const { postId, actionType } = data;
+
+      if (state.post.id === postId) {
+        switch (actionType) {
+          case 'increase':
+            state.post.totalLikes++;
+            break;
+          case 'decrease':
+            state.post.totalLikes--;
+            break;
+        }
+      }
     },
   },
 
