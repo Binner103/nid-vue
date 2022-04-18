@@ -30,6 +30,7 @@ export interface PostListItem {
       name: string;
     },
   ];
+  liked: number;
 }
 
 export interface PostIndexStoreState {
@@ -140,6 +141,37 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
     setFilter(state, data) {
       const filter = filterProcess(data);
       state.filter = filter;
+    },
+
+    setPostItemLiked(state, data) {
+      const { postId, liked } = data;
+
+      state.posts = state.posts.map(post => {
+        if (post.id === postId) {
+          post.liked = liked;
+        }
+
+        return post;
+      });
+    },
+
+    setPostItemTotalLikes(state, data) {
+      const { postId, actionType } = data;
+
+      state.posts = state.posts.map(post => {
+        if (post.id === postId) {
+          switch (actionType) {
+            case 'increase':
+              post.totalLikes++;
+              break;
+            case 'decrease':
+              post.totalLikes--;
+              break;
+          }
+        }
+
+        return post;
+      });
     },
   },
 
