@@ -14,14 +14,7 @@
       </div>
     </div>
     <div class="actions">
-      <div class="action">
-        <div class="icon">
-          <AppIcon name="favorite" />
-        </div>
-        <div class="text">
-          {{ item.totalLikes }}
-        </div>
-      </div>
+      <PostLikeAction class="action" :post="item" />
       <div class="action">
         <div class="icon">
           <button class="button basic" @click="onClickCommentsButton">
@@ -42,6 +35,7 @@ import { mapMutations } from 'vuex';
 import UserAvatar from '@/user/components/user-avatar.vue';
 import UserName from '@/user/components/user-name.vue';
 import AppIcon from '@/app/components/app-icon.vue';
+import PostLikeAction from '@/post/components/post-like-action.vue';
 
 export default defineComponent({
   name: 'PostListItemContent',
@@ -105,6 +99,7 @@ export default defineComponent({
     UserAvatar,
     UserName,
     AppIcon,
+    PostLikeAction,
   },
 });
 </script>
