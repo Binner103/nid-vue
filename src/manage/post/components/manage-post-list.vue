@@ -25,7 +25,9 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      prevScrollTop: 0,
+    };
   },
 
   /**
@@ -55,6 +57,20 @@ export default defineComponent({
     if (this.currentUser) {
       this.getPosts({ filter: this.filter });
     }
+
+    if (window) {
+      window.addEventListener('scroll', this.onScrollWindow);
+      window.scrollTo({top: 0});
+    }
+  },
+
+  /**
+   * 取消挂载
+   */
+  unmounted(){
+    if (window) {
+      window.addEventListener('scroll', this.onScrollWindow);
+    }
   },
 
   /**
@@ -74,6 +90,26 @@ export default defineComponent({
     ...mapActions({
       getPosts: 'post/index/getPosts',
     }),
+
+    onScrollWindow() {
+      if (document) {
+        const {
+          scrollTop,
+          scrollHeight,
+          clientHeight,
+        } = document.documentElement;
+
+        const height = clientHeight + scrollTop + 200;
+        const touchDown = scrollHeight - height < 0;
+        const scrollDown = scrollTop > this.prevScrollTop;
+
+        if (touchDown && scrollDown && !this.loading && this.hasMore) {
+          this.getPosts({ filter: this.filter });
+        }
+
+        this.prevScrollTop = scrollTop;
+      }
+    },
   },
 
   /**
