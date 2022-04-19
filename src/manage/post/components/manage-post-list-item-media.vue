@@ -1,15 +1,14 @@
 <template>
-  <div :class="managePostListItemClasses">
-    <ManagePostListItemMedia :item="item" />
+  <div class="manage-post-list-item-media">
+    <img :src="item.file.size.thumbnail" class="image" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import ManagePostListItemMedia from '@/manage/post/components/manage-post-list-item-media.vue';
 
 export default defineComponent({
-  name: 'ManagePostListItem',
+  name: 'ManagePostListItemMedia',
 
   /**
    * 属性
@@ -30,11 +29,7 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {
-    managePostListItemClasses() {
-      return ['manage-post-list-item', { selected: false }];
-    },
-  },
+  computed: {},
 
   /**
    * 已创建
@@ -51,12 +46,10 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {
-    ManagePostListItemMedia,
-  },
+  components: {},
 });
 </script>
 
 <style scoped>
-@import './styles/manage-post-list-item.css';
+@import './styles/manage-post-list-item-media.css';
 </style>
