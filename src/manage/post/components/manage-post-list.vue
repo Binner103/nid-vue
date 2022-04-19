@@ -1,5 +1,5 @@
 <template>
-  <div class="manage-post-list">
+  <div class="manage-post-list" ref="managePostList">
     <ManagePostListItem v-for="post in posts" :key="post.id" :item="post" />
     <template v-if="loading">
       <ManagePostListItemSkeleton v-for="number in 20" :key="number" />
@@ -60,16 +60,27 @@ export default defineComponent({
 
     if (window) {
       window.addEventListener('scroll', this.onScrollWindow);
-      window.scrollTo({top: 0});
+      window.scrollTo({ top: 0 });
     }
   },
 
   /**
    * 取消挂载
    */
-  unmounted(){
+  unmounted() {
     if (window) {
       window.addEventListener('scroll', this.onScrollWindow);
+    }
+  },
+
+  updated() {
+    if (document) {
+      const { clientHeight: documentHeight } = document.documentElement;
+      const { clientHeight: componentHeight } = this.$refs.managePostList;
+
+      if (componentHeight < documentHeight && this.hasMore && !this.loading) {
+        this.getPosts({ filter: this.filter });
+      }
     }
   },
 
