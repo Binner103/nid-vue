@@ -1,6 +1,9 @@
 <template>
   <div class="manage-post-list">
-    <ManagePostListItem v-for="post in posts" :key="post.id" :item="post"/>
+    <ManagePostListItem v-for="post in posts" :key="post.id" :item="post" />
+    <template v-if="loading">
+      <ManagePostListItemSkeleton v-for="number in 20" :key="number" />
+    </template>
   </div>
 </template>
 
@@ -8,6 +11,7 @@
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 import ManagePostListItem from '@/manage/post/components/manage-post-list-item.vue';
+import ManagePostListItemSkeleton from '@/manage/post/components/manage-post-list-item-skeleton.vue';
 
 export default defineComponent({
   name: 'ManagePostList',
@@ -77,6 +81,7 @@ export default defineComponent({
    */
   components: {
     ManagePostListItem,
+    ManagePostListItemSkeleton,
   },
 });
 </script>
