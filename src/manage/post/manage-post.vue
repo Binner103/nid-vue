@@ -1,14 +1,22 @@
 <template>
   <div class="manage-post">
-    ManagePost
+    <ManagePostList />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import ManagePostList from '@/manage/post/components/manage-post-list.vue';
 
 export default defineComponent({
   name: 'ManagePost',
+
+  /**
+   * 标题
+   */
+  title() {
+    return '内容管理';
+  },
 
   /**
    * 属性
@@ -25,26 +33,25 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {
-  },
+  computed: {},
 
   /**
    * 已创建
    */
   created() {
-  // 
+    //
   },
 
   /**
    * 组件方法
    */
-  methods: {
-  },
+  methods: {},
 
   /**
    * 使用组件
    */
   components: {
+    ManagePostList,
   },
 });
 </script>
