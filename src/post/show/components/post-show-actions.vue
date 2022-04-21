@@ -1,22 +1,15 @@
 <template>
   <div class="post-show-actions">
     <PostLikeAction class="action" :post="post" />
-    <div class="action">
-      <div class="icon">
-        <button class="button basic" @click="onClickCommentButton">
-          <AppIcon name="comment" />
-        </button>
-      </div>
-      <div class="text" v-if="post.totalComments">{{ post.totalComments }}</div>
-    </div>
+    <PostCommentAction class="action" :post="post" actionType="switch" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters, mapMutations, mapActions } from 'vuex';
-import AppIcon from '@/app/components/app-icon.vue';
+import { mapGetters, mapMutations } from 'vuex';
 import PostLikeAction from '@/post/components/post-like-action.vue';
+import PostCommentAction from '@/post/components/post-comment-action.vue';
 
 export default defineComponent({
   name: 'PostShowActions',
@@ -67,25 +60,16 @@ export default defineComponent({
   methods: {
     ...mapMutations({
       setSideSheetComponent: 'layout/setSideSheetComponent',
-      resetSideSheet: 'layout/resetSideSheet',
       setSideSheetProps: 'layout/setSideSheetProps',
     }),
-
-    ...mapActions({
-      switchSideSheet: 'layout/switchSideSheet',
-    }),
-
-    onClickCommentButton() {
-      this.switchSideSheet();
-    },
   },
 
   /**
    * 使用组件
    */
   components: {
-    AppIcon,
     PostLikeAction,
+    PostCommentAction,
   },
 });
 </script>
