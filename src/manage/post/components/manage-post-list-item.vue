@@ -1,12 +1,16 @@
 <template>
   <div :class="managePostListItemClasses">
-    <ManagePostListItemMedia :item="item" />
+    <ManagePostListItemMedia
+      :item="item"
+      @click="onClickPostListItemMedia($event, item)"
+    />
     <ManagePostListItemContent :item="item" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters, mapMutations, mapActions } from 'vuex';
 import ManagePostListItemMedia from '@/manage/post/components/manage-post-list-item-media.vue';
 import ManagePostListItemContent from '@/manage/post/components/manage-post-list-item-content.vue';
 
@@ -33,8 +37,15 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      isSelected: 'manage/select/isSelected',
+    }),
+
     managePostListItemClasses() {
-      return ['manage-post-list-item', { selected: false }];
+      return [
+        'manage-post-list-item',
+        { selected: this.isSelected(this.item.id) },
+      ];
     },
   },
 
@@ -48,7 +59,31 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    ...mapMutations({}),
+
+    ...mapActions({
+      manageSelectedItems: 'manage/select/manageSelectedItems',
+    }),
+
+    onClickPostListItemMedia(event, post) {
+      let actionType;
+
+      if (event.metaKey || event.ctrlKey) {
+        actionType = 'add';
+      }
+
+      if (this.isSelected(post.id)) {
+        actionType = 'remove';
+      }
+
+      this.manageSelectedItems({
+        resourceType: 'post',
+        item: post.id,
+        actionType,
+      });
+    },
+  },
 
   /**
    * 使用组件
