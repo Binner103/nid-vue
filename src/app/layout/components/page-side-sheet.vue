@@ -7,11 +7,14 @@
   </transition>
 </template>
 
+
+
 <script>
 import { defineComponent } from 'vue';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import CommentSideSheet from '@/comment/components/comment-side-sheet.vue';
 import CloseButton from '@/app/components/close-button.vue';
+import ManagePostSideSheet from '@/manage/post/components/manage-post-side-sheet';
 
 export default defineComponent({
   name: 'PageSideSheet',
@@ -80,11 +83,14 @@ export default defineComponent({
    * 使用组件
    */
   components: {
+    ManagePostSideSheet,
     CommentSideSheet,
     CloseButton,
   },
 });
 </script>
+
+
 
 <style scoped>
 @import './styles/page-side-sheet.css';
