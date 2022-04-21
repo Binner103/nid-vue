@@ -96,9 +96,10 @@ export default defineComponent({
     },
 
     onKeyUpWindow(event) {
+      if (event.ctrlKey || event.metaKey) return;
       switch (event.key) {
         case 'b':
-          if (this.posts.length) {
+          if (this.posts && this.posts.length) {
             this.$router.back();
           }
           break;
