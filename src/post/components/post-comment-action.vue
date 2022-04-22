@@ -73,7 +73,8 @@ export default defineComponent({
       if (this.actionType === 'switch') {
         this.switchSideSheet();
       } else {
-        this.openSideSheet();
+        // this.openSideSheet();
+        this.switchSideSheet();
       }
     },
   },
