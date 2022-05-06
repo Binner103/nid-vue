@@ -16,3 +16,9 @@
   position: absolute;
   top: 0;
 }
+
+.manage-post-edit-selected-list-item > .actions {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
