@@ -1,20 +1,27 @@
 <template>
-  <div class="manage-selected-status">
-    ManageSelectedStatus
+  <div class="page-side-sheet-status">
+    <div class="icon">
+      <AppIcon name="error_outline" />
+    </div>
+    <div class="content">{{ content }}</div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
-  name: 'ManageSelectedStatus',
+  name: 'PageSideSheetStatus',
 
   /**
    * 属性
    */
-  props: {},
+  props: {
+    content: {
+      type: String,
+    },
+  },
 
   /**
    * 数据
@@ -26,9 +33,7 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {
-    ...mapGetters({}),
-  },
+  computed: {},
 
   /**
    * 已创建
@@ -45,10 +50,12 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppIcon,
+  },
 });
 </script>
 
 <style scoped>
-@import './styles/manage-selected-status.css';
+@import './styles/page-side-sheet-status.css';
 </style>
