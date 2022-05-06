@@ -1,6 +1,8 @@
 <template>
   <div class="manage-post-edit-selected-list-item">
-    ManagePostEditSelectedListItem
+    <div class="thumbnail">
+      <img class="image" :src="item.file.size.medium" />
+    </div>
   </div>
 </template>
 
@@ -14,7 +16,11 @@ export default defineComponent({
   /**
    * 属性
    */
-  props: {},
+  props: {
+    item: {
+      type: Object,
+    },
+  },
 
   /**
    * 数据
