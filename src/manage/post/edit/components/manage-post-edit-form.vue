@@ -1,10 +1,27 @@
 <template>
-  <div class="manage-post-edit-form">ManagePostEditForm</div>
+  <div class="manage-post-edit-form">
+    <TextField
+      v-model="currentEditPost.title"
+      placeholder="标题"
+      @dirty="onDirty"
+      v-if="isSingleSelect"
+    />
+    <TextareaField
+      class="bordered"
+      :rows="1"
+      v-model="currentEditPost.content"
+      placeholder="描述"
+      @dirty="onDirty"
+      v-if="isSingleSelect"
+    />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
+import TextField from '@/app/components/text-field.vue';
+import TextareaField from '@/app/components/textarea-field.vue';
 
 export default defineComponent({
   name: 'ManagePostEditForm',
@@ -18,14 +35,19 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      unsaved: false,
+    };
   },
 
   /**
    * 计算属性
    */
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      currentEditPost: 'manage/select/currentEditPost',
+      isSingleSelect: 'manage/select/isSingleSelect',
+    }),
   },
 
   /**
@@ -40,12 +62,19 @@ export default defineComponent({
    */
   methods: {
     ...mapActions({}),
+
+    onDirty() {
+      this.unsaved = true;
+    },
   },
 
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    TextField,
+    TextareaField,
+  },
 });
 </script>
 
