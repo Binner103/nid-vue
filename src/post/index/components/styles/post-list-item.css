@@ -1,6 +1,15 @@
 .post-list-item {
   display: grid;
   grid-template-rows: 1fr 60px;
+  overflow: hidden;
+  box-shadow: 0 0 3rem -1rem rgba(0, 0, 0, 0.5);
+  border-radius: 2%;
+}
+
+.post-list-item:hover{
+  transition: 0.2s;
+  transform: translateY(-0.5rem) scale(1.0125);
+  box-shadow: 0 0.5em 3rem -1rem rgba(0, 0, 0, 0.5);
 }
 
 .post-list-item.portrait {
@@ -12,4 +21,8 @@
 .post-list-item.stackable-minimal,
 .post-list-item.flow-minimal {
   grid-template-rows: 1fr;
+}
+
+.post-list-item-card- {
+
 }

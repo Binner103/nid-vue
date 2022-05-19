@@ -1,8 +1,10 @@
 <template>
-  <div :class="postListItemClasses">
-    <PostListItemMedia :item="item" />
-    <PostListItemContent :item="item" v-if="showPostListItemContent" />
-  </div>
+  <transition name="post-list-item-card">
+    <div :class="postListItemClasses">
+      <PostListItemMedia :item="item" />
+      <PostListItemContent :item="item" v-if="showPostListItemContent" />
+    </div>
+  </transition>
 </template>
 
 <script>
