@@ -22,7 +22,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
 import SubmitButton from '@/app/components/submit-button.vue';
@@ -65,6 +65,9 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapMutations({
+      setPostItem: 'post/index/setPostItem',
+    }),
     ...mapActions({
       updatePost: 'post/edit/updatePost',
       pushMessage: 'notification/pushMessage',
@@ -82,6 +85,8 @@ export default defineComponent({
           postId: this.currentEditPost.id,
           data: this.currentEditPost,
         });
+
+        this.setPostItem(this.currentEditPost);
 
         this.unsaved = false;
       } catch (error) {
