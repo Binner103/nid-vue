@@ -16,6 +16,7 @@
     />
     <div class="actions">
       <SubmitButton text="更新" :unsaved="unsaved" @submit="onSubmitButton" />
+      <DeleteButton />
     </div>
   </div>
 </template>
@@ -26,6 +27,7 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
 import SubmitButton from '@/app/components/submit-button.vue';
+import DeleteButton from '@/app/components/delete-button.vue';
 
 export default defineComponent({
   name: 'ManagePostEditForm',
@@ -102,6 +104,7 @@ export default defineComponent({
     TextField,
     TextareaField,
     SubmitButton,
+    DeleteButton,
   },
 });
 </script>
