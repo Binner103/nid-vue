@@ -15,7 +15,7 @@
       v-if="isSingleSelect"
     />
     <div class="actions">
-      <SubmitButton text="更新" :unsaved="unsaved"/>
+      <SubmitButton text="更新" :unsaved="unsaved" @submit="onSubmitButton" />
     </div>
   </div>
 </template>
@@ -65,10 +65,28 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      updatePost: 'post/edit/updatePost',
+      pushMessage: 'notification/pushMessage',
+    }),
 
     onDirty() {
       this.unsaved = true;
+    },
+
+    async onSubmitButton() {
+      if (!this.unsaved) return;
+
+      try {
+        await this.updatePost({
+          postId: this.currentEditPost.id,
+          data: this.currentEditPost,
+        });
+
+        this.unsaved = false;
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
     },
   },
 
