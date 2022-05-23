@@ -14,6 +14,9 @@
       @dirty="onDirty"
       v-if="isSingleSelect"
     />
+    <div class="actions">
+      <SubmitButton text="更新" :unsaved="unsaved"/>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,7 @@ import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
+import SubmitButton from '@/app/components/submit-button.vue';
 
 export default defineComponent({
   name: 'ManagePostEditForm',
@@ -74,6 +78,7 @@ export default defineComponent({
   components: {
     TextField,
     TextareaField,
+    SubmitButton,
   },
 });
 </script>
