@@ -127,6 +127,36 @@ export const manageSelectStoreModule: Module<
           break;
       }
     },
+
+    async deleteSelectedPosts({ commit, dispatch, getters }) {
+      const posts = getters.selectedPosts as Array<PostListItem>;
+
+      if (!posts.length) return;
+
+      for (const post of posts) {
+        try {
+          await dispatch(
+            'post/destroy/deletePost',
+            { postId: post.id },
+            { root: true },
+          );
+
+          await dispatch('manageSelectedItems', {
+            resourceType: 'post',
+            actionType: 'remove',
+            item: post.id,
+          });
+
+          commit('post/index/removePostItem', post, { root: true });
+        } catch (error) {
+          dispatch(
+            'notification/pushMessage',
+            { content: error.data.message },
+            { root: true },
+          );
+        }
+      }
+    },
   },
 
   /**

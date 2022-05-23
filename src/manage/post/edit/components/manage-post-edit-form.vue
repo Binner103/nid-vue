@@ -16,7 +16,7 @@
     />
     <div class="actions">
       <SubmitButton text="更新" :unsaved="unsaved" @submit="onSubmitButton" />
-      <DeleteButton />
+      <DeleteButton @delete="onDeleteButton" />
     </div>
   </div>
 </template>
@@ -73,6 +73,7 @@ export default defineComponent({
     ...mapActions({
       updatePost: 'post/edit/updatePost',
       pushMessage: 'notification/pushMessage',
+      deleteSelectedPosts: 'manage/select/deleteSelectedPosts',
     }),
 
     onDirty() {
@@ -94,6 +95,10 @@ export default defineComponent({
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
+    },
+
+    onDeleteButton() {
+      this.deleteSelectedPosts();
     },
   },
 
