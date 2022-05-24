@@ -137,12 +137,13 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
           data: { tagId },
         });
 
-        const {
-          data: { tags },
-        } = await dispatch('post/show/getPostById', postId, { root: true });
+        const { data: post } = await dispatch('post/show/getPostById', postId, {
+          root: true,
+        });
 
         commit('setLoading', false);
-        commit('setTags', tags);
+        commit('setTags', post.tags);
+        commit('post/index/setPostItem', post, { root: true });
 
         return response;
       } catch (error) {
