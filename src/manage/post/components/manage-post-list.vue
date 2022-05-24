@@ -61,6 +61,7 @@ export default defineComponent({
     if (window) {
       window.addEventListener('scroll', this.onScrollWindow);
       window.scrollTo({ top: 0 });
+      window.addEventListener('keydown', this.onKeyDownWindow);
     }
   },
 
@@ -70,6 +71,7 @@ export default defineComponent({
   unmounted() {
     if (window) {
       window.addEventListener('scroll', this.onScrollWindow);
+      window.removeEventListener('keydown', this.onKeyDownWindow);
     }
   },
 
@@ -78,7 +80,11 @@ export default defineComponent({
       const { clientHeight: documentHeight } = document.documentElement;
       const { clientHeight: componentHeight } = this.$refs.managePostList;
 
-      if (componentHeight < documentHeight && this.hasMore && !this.loading) {
+      if (
+        componentHeight < documentHeight + 200 &&
+        this.hasMore &&
+        !this.loading
+      ) {
         this.getPosts({ filter: this.filter });
       }
     }
@@ -100,6 +106,7 @@ export default defineComponent({
     ...mapMutations({}),
     ...mapActions({
       getPosts: 'post/index/getPosts',
+      deleteSelectedPosts: 'manage/select/deleteSelectedPosts',
     }),
 
     onScrollWindow() {
@@ -119,6 +126,12 @@ export default defineComponent({
         }
 
         this.prevScrollTop = scrollTop;
+      }
+    },
+
+    onKeyDownWindow(event) {
+      if ((event.metaKey || event.ctrlKey) && event.key === 'Backspace') {
+        this.deleteSelectedPosts();
       }
     },
   },
