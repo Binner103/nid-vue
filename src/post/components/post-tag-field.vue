@@ -41,6 +41,10 @@ export default defineComponent({
     postId: {
       type: Number,
     },
+
+    posts: {
+      type: Array,
+    },
   },
 
   /**
@@ -51,6 +55,11 @@ export default defineComponent({
       name: '',
     };
   },
+
+  /**
+   * 事件
+   */
+  emits: ['updated'],
 
   /**
    * 计算属性
@@ -85,7 +94,32 @@ export default defineComponent({
     },
 
     onKeyUpEnterTag() {
-      this.submitCreatePostTag();
+      if (this.posts) {
+        this.batchCreatePostTag();
+      } else {
+        this.submitCreatePostTag();
+      }
+    },
+
+    async batchCreatePostTag() {
+      for (const post of this.posts) {
+        if (post.tags && post.tags.some(tag => tag.name === this.name.trim()))
+          continue;
+
+        try {
+          await this.createPostTag({
+            postId: post.id,
+            data: {
+              name: this.name,
+            },
+          });
+        } catch (error) {
+          continue;
+        }
+      }
+
+      this.$emit('updated');
+      this.name = '';
     },
 
     async submitCreatePostTag() {

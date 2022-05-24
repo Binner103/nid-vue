@@ -14,7 +14,7 @@
       @dirty="onDirty"
       v-if="isSingleSelect"
     />
-    <PostTagField />
+    <PostTagField :posts="selectedPosts" @updated="onUpdatePostTagField" />
     <div class="actions">
       <SubmitButton text="更新" :unsaved="unsaved" @submit="onSubmitButton" />
       <DeleteButton @delete="onDeleteButton" />
@@ -55,6 +55,7 @@ export default defineComponent({
     ...mapGetters({
       currentEditPost: 'manage/select/currentEditPost',
       isSingleSelect: 'manage/select/isSingleSelect',
+      selectedPosts: 'manage/select/selectedPosts',
     }),
   },
 
@@ -76,6 +77,7 @@ export default defineComponent({
       updatePost: 'post/edit/updatePost',
       pushMessage: 'notification/pushMessage',
       deleteSelectedPosts: 'manage/select/deleteSelectedPosts',
+      getSelectedPosts: 'manage/select/getSelectedPosts',
     }),
 
     onDirty() {
@@ -101,6 +103,10 @@ export default defineComponent({
 
     onDeleteButton() {
       this.deleteSelectedPosts();
+    },
+
+    onUpdatePostTagField() {
+      this.getSelectedPosts();
     },
   },
 
