@@ -14,6 +14,7 @@
       @dirty="onDirty"
       v-if="isSingleSelect"
     />
+    <PostTagField />
     <div class="actions">
       <SubmitButton text="更新" :unsaved="unsaved" @submit="onSubmitButton" />
       <DeleteButton @delete="onDeleteButton" />
@@ -28,6 +29,7 @@ import TextField from '@/app/components/text-field.vue';
 import TextareaField from '@/app/components/textarea-field.vue';
 import SubmitButton from '@/app/components/submit-button.vue';
 import DeleteButton from '@/app/components/delete-button.vue';
+import PostTagField from '@/post/components/post-tag-field.vue';
 
 export default defineComponent({
   name: 'ManagePostEditForm',
@@ -110,6 +112,7 @@ export default defineComponent({
     TextareaField,
     SubmitButton,
     DeleteButton,
+    PostTagField,
   },
 });
 </script>
