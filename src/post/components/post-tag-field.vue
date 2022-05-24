@@ -90,7 +90,11 @@ export default defineComponent({
     }),
 
     onClickAddButton() {
-      this.submitCreatePostTag();
+      if (this.posts) {
+        this.batchCreatePostTag();
+      } else {
+        this.submitCreatePostTag();
+      }
     },
 
     onKeyUpEnterTag() {
