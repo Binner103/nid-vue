@@ -1,30 +1,30 @@
 .page.light {
   /* background */
-  --primary-background: #ffffff;
+  --primary-background: #f0ede8;
   --light-background: #f8f8f8;
-  --page-header-background: #ffffff;
-  --page-aside-background: #ffffff;
+  --page-header-background: #f0ede8;
+  --page-aside-background: #f0ede8;
 
   /* Text */
-  --primary-text-color: #000000;
+  --primary-text-color: #29282d;
   --secondary-text-color: #585858;
   --light-text-color: #adadad;
 
   /* Line */
   --line-color: #e1e3e7;
-  --highlight-line-color: #000000;
+  --highlight-line-color: #aea392;
 
   /* Button */
-  --primary-button-background: #000000;
-  --outline-button-color: #000000;
+  --primary-button-background: #aea392;
+  --outline-button-color: #aea392;
   --lowkey-button-background: #e0e0e0;
   --lowkey-button-text-color: #5a5a5a;
 
   /* Skeleton */
-  --skeleton-background: #f0f0f0;
+  --skeleton-background: #d8d4d0;
 
   /* Sheet */
-  --page-side-sheet-background: #f8f8f8;
+  --page-side-sheet-background: #f0ede8;
 
   /* Reply */
   --reply-filter: drop-shadow(rgba(0, 0, 0, 0.1) 0 2px 0);
@@ -32,10 +32,10 @@
 
 .page.dark {
   /* background */
-  --primary-background: #222222;
+  --primary-background: #29282d;
   --light-background: #1f1f1f;
-  --page-header-background: #222222;
-  --page-aside-background: #2e2e2e;
+  --page-header-background: #29282d;
+  --page-aside-background: #29282d;
 
   /* Text */
   --primary-text-color: #b1b1b1;
