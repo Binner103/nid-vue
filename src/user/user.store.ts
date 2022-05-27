@@ -9,11 +9,16 @@ import {
   userAccountStoreModule,
   UserAccountStoreState,
 } from './account/user-account.store';
+import {
+  userCreateStoreModule,
+  UserCreateStoreState,
+} from './create/user-create.store';
 
 export interface UserStoreState {
   currentUser: User | null;
   show: UserShowStoreState;
   account: UserAccountStoreState;
+  create: UserCreateStoreState;
 }
 
 export const userStoreModule: Module<UserStoreState, RootState> = {
@@ -72,5 +77,6 @@ export const userStoreModule: Module<UserStoreState, RootState> = {
   modules: {
     show: userShowStoreModule,
     account: userAccountStoreModule,
+    create: userCreateStoreModule,
   },
 };
