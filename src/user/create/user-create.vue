@@ -4,7 +4,7 @@
       <h1 class="header">注册用户</h1>
       <TextField v-model="name" placeholder="用户" />
       <TextField v-model="password" placeholder="密码" type="password" />
-      <ButtonField text="注册" size="large" />
+      <ButtonField text="注册" size="large" :type="registerButtonType" />
     </div>
     <div class="action">
       <router-link class="link" :to="loginLinkTo">登录 →</router-link>
@@ -30,7 +30,10 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      name: '',
+      password: '',
+    };
   },
 
   /**
@@ -38,8 +41,13 @@ export default defineComponent({
    */
   computed: {
     ...mapGetters({}),
+
     loginLinkTo() {
       return { name: 'login' };
+    },
+
+    registerButtonType() {
+      return this.name && this.password ? '' : 'outline';
     },
   },
 

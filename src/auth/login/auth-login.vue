@@ -4,7 +4,12 @@
       <h1 class="header">用户登录</h1>
       <TextField v-model="name" placeholder="用户名" />
       <TextField v-model="password" placeholder="密码" type="password" />
-      <ButtonField text="登录" size="large" @click="onClickLoginButton" />
+      <ButtonField
+        text="登录"
+        size="large"
+        :type="loginButtonType"
+        @click="onClickLoginButton"
+      />
     </div>
     <div class="action">
       <router-link class="link" :to="registerLinkTo">注册 →</router-link>
@@ -54,6 +59,10 @@ export default defineComponent({
 
     registerLinkTo() {
       return { name: 'userCreate' };
+    },
+
+    loginButtonType() {
+      return this.name && this.password ? '' : 'outline';
     },
   },
 
