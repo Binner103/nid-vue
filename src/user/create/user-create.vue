@@ -1,6 +1,10 @@
 <template>
   <div class="user-create">
-    <div class="form">
+    <div class="content" v-if="isSuccessful">
+      <h1 class="header">注册成功 :)</h1>
+      <div class="description">恭喜，您成功注册了用户: {{ name }}</div>
+    </div>
+    <div class="form" v-if="!isSuccessful">
       <h1 class="header">注册用户</h1>
       <TextField v-model="name" placeholder="用户" />
       <TextField v-model="password" placeholder="密码" type="password" />
@@ -11,7 +15,7 @@
         @click="onClickRegisterButton"
       />
     </div>
-    <div class="action">
+    <div class="action" v-if="!isSuccessful">
       <router-link class="link" :to="loginLinkTo">登录 →</router-link>
     </div>
   </div>
@@ -38,6 +42,7 @@ export default defineComponent({
     return {
       name: '',
       password: '',
+      isSuccessful: false,
     };
   },
 
@@ -85,6 +90,8 @@ export default defineComponent({
         await this.login(data);
 
         this.pushMessage({ content: '注册并登录成功！' });
+
+        this.isSuccessful = true;
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
