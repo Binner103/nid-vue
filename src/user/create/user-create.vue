@@ -4,7 +4,12 @@
       <h1 class="header">注册用户</h1>
       <TextField v-model="name" placeholder="用户" />
       <TextField v-model="password" placeholder="密码" type="password" />
-      <ButtonField text="注册" size="large" :type="registerButtonType" />
+      <ButtonField
+        text="注册"
+        size="large"
+        :type="registerButtonType"
+        @click="onClickRegisterButton"
+      />
     </div>
     <div class="action">
       <router-link class="link" :to="loginLinkTo">登录 →</router-link>
@@ -63,7 +68,27 @@ export default defineComponent({
    */
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      createUser: 'user/create/createUser',
+      pushMessage: 'notification/pushMessage',
+      login: 'auth/login/login',
+    }),
+
+    async onClickRegisterButton() {
+      const data = {
+        name: this.name,
+        password: this.password,
+      };
+
+      try {
+        await this.createUser({ data });
+        await this.login(data);
+
+        this.pushMessage({ content: '注册并登录成功！' });
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
+    },
   },
 
   /**
