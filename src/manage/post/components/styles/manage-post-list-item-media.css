@@ -6,7 +6,7 @@
   background: var(--skeleton-background);
 }
 
-.manage-post-list-item-media:after {
+.manage-post-list-item-media::after {
   display: block;
   content: '';
   padding-top: 100%;
