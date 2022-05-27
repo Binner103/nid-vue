@@ -1,6 +1,14 @@
 /* user-create */
-.user-create{
+.user-create {
   max-width: 520px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.user-create > .action {
+  text-align: right;
+}
+
+.user-create > .action > .link {
+  color: var(--secondary-text-color);
 }

@@ -1,10 +1,13 @@
 <template>
   <div class="user-create">
-    <div class="from">
+    <div class="form">
       <h1 class="header">注册用户</h1>
       <TextField v-model="name" placeholder="用户" />
       <TextField v-model="password" placeholder="密码" type="password" />
       <ButtonField text="注册" size="large" />
+    </div>
+    <div class="action">
+      <router-link class="link" :to="loginLinkTo">登录 →</router-link>
     </div>
   </div>
 </template>
@@ -35,6 +38,9 @@ export default defineComponent({
    */
   computed: {
     ...mapGetters({}),
+    loginLinkTo() {
+      return { name: 'login' };
+    },
   },
 
   /**

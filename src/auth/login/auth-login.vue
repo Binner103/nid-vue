@@ -6,6 +6,9 @@
       <TextField v-model="password" placeholder="密码" type="password" />
       <ButtonField text="登录" size="large" @click="onClickLoginButton" />
     </div>
+    <div class="action">
+      <router-link class="link" :to="registerLinkTo">注册 →</router-link>
+    </div>
   </div>
 </template>
 
@@ -48,6 +51,10 @@ export default defineComponent({
       loading: 'auth/login/loading',
       loginResponseData: 'auth/login/loginResponseData',
     }),
+
+    registerLinkTo() {
+      return { name: 'userCreate' };
+    },
   },
 
   /**
@@ -96,9 +103,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.auth-login {
-  max-width: 520px;
-  margin: 0 auto;
-  padding: 32px;
-}
+@import './styles/auth-login.css';
 </style>
