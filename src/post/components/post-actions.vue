@@ -15,7 +15,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'PostActions',
@@ -56,6 +56,7 @@ export default defineComponent({
       postId: 'post/create/postId',
       title: 'post/create/title',
       unsaved: 'post/create/unsaved',
+      selectedFile: 'file/create/selectedFile',
     }),
 
     submitButtonText() {
@@ -86,8 +87,18 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapActions({
+      pushMessage: 'notification/pushMessage',
+    }),
+
     onClickSubmitButton() {
-      if (!this.title.trim()) return;
+      if (!this.selectedFile) {
+        return this.pushMessage({ content: '请选择照片!' });
+      }
+
+      if (!this.title.trim()) {
+        return this.pushMessage({ content: '请输入标题!' });
+      }
 
       if (this.postId) {
         this.$emit('update');
