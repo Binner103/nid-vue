@@ -52,6 +52,7 @@ export default defineComponent({
       content: 'post/create/content',
       post: 'post/show/post',
       selectedFile: 'file/create/selectedFile',
+      isLoggedIn: 'auth/isLoggedIn',
     }),
   },
 
@@ -111,6 +112,10 @@ export default defineComponent({
     }),
 
     async submitCreatePost() {
+      if (!this.isLoggedIn) {
+        return this.pushMessage({ content: '请登录!' });
+      }
+
       try {
         await this.createPost({
           data: {
@@ -208,6 +213,10 @@ export default defineComponent({
     },
 
     async submitCreateFile() {
+      if (!this.isLoggedIn) {
+        return this.pushMessage({ content: '请登录!' });
+      }
+
       try {
         await this.createFile({ postId: this.postId, file: this.selectedFile });
       } catch (error) {
