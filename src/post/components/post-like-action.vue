@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
@@ -39,6 +39,10 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      isLoggedIn: 'auth/isLoggedIn',
+    }),
+
     likeIcon() {
       return this.post.liked ? 'favorite' : 'favorite_border';
     },
@@ -58,9 +62,14 @@ export default defineComponent({
     ...mapActions({
       createUserLikePost: 'like/create/createUserLikePost',
       deleteUserLikePost: 'like/destroy/deleteUserLikePost',
+      pushMessage: 'notification/pushMessage',
     }),
 
     onClickLikeButton() {
+      if (!this.isLoggedIn) {
+        return this.pushMessage({ content: '请登录!' });
+      }
+
       if (this.post.liked) {
         this.deleteUserLikePost({ postId: this.post.id });
       } else {
