@@ -96,7 +96,7 @@ export default defineComponent({
       if (!this.content.trim()) return;
 
       if (!this.currentUser) {
-        this.pushMessage({ content: '请求登录' });
+        this.pushMessage({ content: '请先登录!' });
         return;
       }
 
