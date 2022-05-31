@@ -119,7 +119,7 @@ export default defineComponent({
       this.submitComment();
     },
     onClickRegisterButton() {
-      this.$router.push({ name: 'login' });
+      this.$router.push({ name: 'userCreate' });
     },
     onClickLoginButton() {
       this.$router.push({ name: 'login' });
