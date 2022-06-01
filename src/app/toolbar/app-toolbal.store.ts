@@ -5,6 +5,7 @@ export interface AppToolbarStoreState {
   showPostListLayoutSwitcher: boolean;
   showPostShowNavigator: boolean;
   showSideSheetItem: boolean;
+  showAppSearch: boolean;
 }
 
 export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
@@ -20,6 +21,7 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
     showPostListLayoutSwitcher: false,
     showPostShowNavigator: false,
     showSideSheetItem: false,
+    showAppSearch: false,
   } as AppToolbarStoreState,
 
   /**
@@ -37,6 +39,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
     showSideSheetItem(state) {
       return state.showSideSheetItem;
     },
+
+    showAppSearch(state) {
+      return state.showAppSearch;
+    },
   },
 
   /**
@@ -53,6 +59,10 @@ export const appToolbarStoreModule: Module<AppToolbarStoreState, RootState> = {
 
     setShowSideSheetItem(state, data) {
       state.showSideSheetItem = data;
+    },
+
+    setShowAppSearch(state, data) {
+      state.showAppSearch = data;
     },
   },
 
