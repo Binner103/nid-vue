@@ -1,4 +1,3 @@
-# ninghao-vue
 
 ## Project setup
 ```
